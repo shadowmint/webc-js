@@ -1,0 +1,21 @@
+{
+  "name": "iwc-js",
+  "version": "0.1.5",
+  "main": "dist/iwc.js",
+  "ignore": [
+    "Gruntfile.js",
+    "LICENSE-MIT",
+    "README.md",
+    "bower.json",
+    "demo/**/*",
+    "package.json",
+    "src/**/*",
+    ".bowerrc",
+    ".git",
+    ".gitignore",
+    ".gruntExt.js"
+  ],
+  "devDependencies": {
+    "platform": "git://github.com/Polymer/platform-dev#0.3.5"
+  }
+}

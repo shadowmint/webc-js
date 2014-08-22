@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <script src="/bower_components/platform/build/platform.concat.js"></script>
+    <!--
+    <script src="../dist/webc.js"></script>
+    <script>
+        webc.component({
+            name: 'hello-test',
+            stylesheet: ':host(input) { border: 2px solid #f00; }',
+            template: function() { return 'hello world <input type="button"/> <hello-test2/>'; },
+            init: function(root) { console.log(root); }
+        });
+        webc.component({
+            name: 'hello-test2',
+            template: function() { return '<input type="button"/>'; },
+            init: function(root) { console.log(root); }
+        });
+    </script>
+-->
+    <hello-test></hello-test>
+    hi
+    <hello-test></hello-test>
+    hi2
+    <hello-test></hello-test>
+</body>
+</hhtml>

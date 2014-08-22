@@ -1,0 +1,8 @@
+node_modules
+.baseDir*
+dist/webc
+demo/js/lib
+*.js.map
+*.d.ts
+.tscache
+.idea
