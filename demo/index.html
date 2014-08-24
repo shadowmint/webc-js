@@ -7,8 +7,8 @@
     <script>
         webc.component({
             name: 'hello-test',
-            stylesheet: ':host(input) { border: 2px solid #f00; }',
-            template: function() { return 'hello world <hello-test2></hello-test2><input type="button"/><br/>'; },
+            stylesheet: ':host input  { border: 2px solid #f00; }',
+            template: function(root) { console.log(root.innerHTML); return 'hello world <hello-test2></hello-test2><input type="button"/><br/>'; },
             init: function(root) { console.log(root); }
         });
         webc.component({
@@ -17,7 +17,9 @@
             init: function(root) { console.log(root); }
         });
     </script>
-    <hello-test></hello-test>
+    <hello-test>
+      HI HI
+    </hello-test>
     hi
     <hello-test></hello-test>
     hi2

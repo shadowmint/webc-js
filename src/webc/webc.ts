@@ -17,7 +17,7 @@ export module webc {
         template:{(root:any):string};
 
         /** Invoke this on new component instances after they are created */
-        factory:{(root:any):any};
+        init:{(root:any):any};
     };
 
     /** Modules waiting to load */
@@ -32,7 +32,7 @@ export module webc {
             name: null,
             stylesheet: null,
             template: (root:any) => { return "" },
-            factory: (root:any):any => { return { root: root }; }
+            init: (root:any):any => { return { root: root }; }
         };
         for (var key in value) {
             c[key] = value[key];
@@ -63,7 +63,7 @@ export module webc {
             root.appendChild(clone);
 
             // Invoke the init call async
-            async.async(() => { c.factory(root); });
+            async.async(() => { c.init(root); });
         };
         document['registerElement'](c.name, { prototype: prototype });
     }

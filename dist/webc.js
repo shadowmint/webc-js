@@ -14543,7 +14543,7 @@ var async = require('./async');
             template: function (root) {
                 return "";
             },
-            factory: function (root) {
+            init: function (root) {
                 return { root: root };
             }
         };
@@ -14558,8 +14558,6 @@ var async = require('./async');
     }
     webc.component = component;
 
-    /** Process stylesheet
-    
     /** Dispatch a component load */
     function dispatch(c) {
         var prototype = Object.create(HTMLElement.prototype);
@@ -14579,7 +14577,7 @@ var async = require('./async');
 
             // Invoke the init call async
             async.async(function () {
-                c.factory(root);
+                c.init(root);
             });
         };
         document['registerElement'](c.name, { prototype: prototype });
