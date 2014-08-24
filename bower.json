@@ -1,6 +1,6 @@
 {
-  "name": "iwc-js",
-  "version": "0.1.5",
+  "name": "webc-js",
+  "version": "0.1.0",
   "main": "dist/iwc.js",
   "ignore": [
     "Gruntfile.js",
@@ -16,6 +16,6 @@
     ".gruntExt.js"
   ],
   "devDependencies": {
-    "platform": "git://github.com/Polymer/platform-dev#0.3.5"
+    "platform": "git://github.com/Polymer/platform-dev#0.3.4"
   }
 }

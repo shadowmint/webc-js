@@ -6,3 +6,4 @@ demo/js/lib
 *.d.ts
 .tscache
 .idea
+bower_components

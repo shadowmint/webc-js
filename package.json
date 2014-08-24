@@ -1,10 +1,10 @@
 {
-  "name": "iwc.js",
-  "version": "0.1.5",
+  "name": "webc.js",
+  "version": "0.1.0",
   "description": "",
-  "main": "dist/iwc.js",
+  "main": "dist/webc.js",
   "scripts": {
-    "quickstart": "npm install && grunt"
+    "quickstart": "npm install && grunt setup && grunt"
   },
   "author": "",
   "license": "MIT",

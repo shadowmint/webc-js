@@ -8603,13 +8603,13 @@ var selectorRe = /([^{]*)({[\s\S]*?})/gim,
     cssCommentRe = /\/\*[^*]*\*+([^/*][^*]*\*+)*\//gim,
     // TODO(sorvell): remove either content or comment
     cssCommentNextSelectorRe = /\/\*\s*@polyfill ([^*]*\*+([^/*][^*]*\*+)*\/)([^{]*?){/gim,
-    cssContentNextSelectorRe = /polyfill-next-selector[^}]*content\:[\s]*?['"](.*?)['"][;\s]*}([^{]*?){/gim,  
+    cssContentNextSelectorRe = /polyfill-next-selector[^}]*content\:[\s]*['|"]([^'"]*)['|"][^}]*}([^{]*?){/gim,
     // TODO(sorvell): remove either content or comment
     cssCommentRuleRe = /\/\*\s@polyfill-rule([^*]*\*+([^/*][^*]*\*+)*)\//gim,
-    cssContentRuleRe = /(polyfill-rule)[^}]*(content\:[\s]*['"](.*?)['"])[;\s]*[^}]*}/gim,
+    cssContentRuleRe = /(polyfill-rule)[^}]*(content\:[\s]*['|"]([^'"]*)['|"][^;]*;)[^}]*}/gim,
     // TODO(sorvell): remove either content or comment
     cssCommentUnscopedRuleRe = /\/\*\s@polyfill-unscoped-rule([^*]*\*+([^/*][^*]*\*+)*)\//gim,
-    cssContentUnscopedRuleRe = /(polyfill-unscoped-rule)[^}]*(content\:[\s]*['"](.*?)['"])[;\s]*[^}]*}/gim,
+    cssContentUnscopedRuleRe = /(polyfill-unscoped-rule)[^}]*(content\:[\s]*['|"]([^'"]*)['|"][^;]*;)[^}]*}/gim,
     cssPseudoRe = /::(x-[^\s{,(]*)/gim,
     cssPartRe = /::part\(([^)]*)\)/gim,
     // note: :host pre-processed to -shadowcsshost.
@@ -8805,7 +8805,7 @@ if (window.ShadowDOMPolyfill) {
           if (elt.parentNode === head) {
             head.replaceChild(style, elt);
           } else {
-            this.addElementToDocument(style);
+            head.appendChild(style);
           }
         }
         style.__importParsed = true;
