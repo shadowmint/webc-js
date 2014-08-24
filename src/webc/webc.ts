@@ -45,8 +45,6 @@ export module webc {
         }
     }
 
-    /** Process stylesheet
-
     /** Dispatch a component load */
     function dispatch(c:Component) {
 
