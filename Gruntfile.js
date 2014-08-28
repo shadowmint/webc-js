@@ -103,7 +103,7 @@ module.exports = function (grunt) {
             }
         }
     });
-    ext.registerTask('_dev', ['connect', 'watch']);
+    ext.registerTask('_dev', ['components', 'connect', 'watch']);
 
     // Dev components
     iwc.components('demo/components');

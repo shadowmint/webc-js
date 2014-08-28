@@ -11,10 +11,10 @@ function load(_ext) {
 }
 
 /** Register a component */
-function component(name, src, dest, watch) {
+function component(name, src, dest) {
 
     // Setup paths
-    var tmp = dest + '/' + name;
+    var tmp = dest + '/' + name + '/build';
     var task = '_' + name.replace(/-/g, '_');
 
     // Build task for this component
@@ -62,7 +62,8 @@ function component(name, src, dest, watch) {
                 src: tmp,
                 dest: dest,
                 options: {
-                    script: src + '/script.js'
+                    script: src + '/script.js',
+                    output: name
                 }
             }
         },
@@ -90,7 +91,7 @@ function component(name, src, dest, watch) {
             },
             iwc: {
                 files: [tmp + '/**/*'],
-                tasks: ['iwc:component', watch],
+                tasks: ['iwc:component'],
                 options: {
                     spawn: true
                 }
@@ -104,7 +105,7 @@ function component(name, src, dest, watch) {
         for (var sub in config[key]) {
             if (key == 'watch') {
                 for (var watch_target in config[key][sub]['tasks']) {
-                    var output = config[key][sub]['tasks'][watch_target] == watch ? watch : config[key][sub]['tasks'][watch_target] + task;
+                    var output = config[key][sub]['tasks'][watch_target] + task;
                     config[key][sub]['tasks'][watch_target] = output;
                 }
             }
@@ -127,7 +128,10 @@ function register_components(path) {
   if (path) {
     var sources = fs.readdirSync(path);
     for (var i = 0; i < sources.length; ++i) {
-      component(sources[i], path+sources[i], path);
+      var p = path + '/' + sources[i];
+      if (fs.lstatSync(p).isDirectory()) {
+        component(sources[i], p, path);
+      }
     }
   }
   ext.registerTask('components', components);

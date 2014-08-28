@@ -8,3 +8,5 @@ demo/js/lib
 .idea
 bower_components
 .DS_STORE
+build
+.sass-cache
