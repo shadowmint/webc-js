@@ -9,12 +9,10 @@
             name: 'hello-test',
             stylesheet: ':host input  { border: 2px solid #f00; }',
             template: function(root) { console.log(root.innerHTML); return 'hello world <hello-test2></hello-test2><input type="button"/><br/>'; },
-            init: function(root) { console.log(root); }
         });
         webc.component({
             name: 'hello-test2',
             template: function() { return '<input type="select"/>'; },
-            init: function(root) { console.log(root); }
         });
     </script>
     <hello-test>

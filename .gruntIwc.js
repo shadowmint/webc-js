@@ -1,7 +1,7 @@
 'use strict';
 
+var fs = require('fs');
 var ext = null;
-
 var components = [];
 
 /** Load this submodule */
@@ -123,8 +123,14 @@ function component(name, src, dest, watch) {
 }
 
 /** Register all the components */
-function register_components() {
-    ext.registerTask('components', components)
+function register_components(path) {
+  if (path) {
+    var sources = fs.readdirSync(path);
+    for (var i = 0; i < sources.length; ++i) {
+      component(sources[i], path+sources[i], path);
+    }
+  }
+  ext.registerTask('components', components);
 }
 
 // API

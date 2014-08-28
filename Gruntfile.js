@@ -1,5 +1,6 @@
 'use strict';
 var ext = require('./.gruntExt');
+var iwc = require('./.gruntIwc').load(ext);
 module.exports = function (grunt) {
 
     // Common
@@ -103,6 +104,9 @@ module.exports = function (grunt) {
         }
     });
     ext.registerTask('_dev', ['connect', 'watch']);
+
+    // Dev components
+    iwc.components('demo/components');
 
     // Tasks
     ext.initConfig(grunt);
