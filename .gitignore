@@ -7,3 +7,4 @@ demo/js/lib
 .tscache
 .idea
 bower_components
+.DS_STORE

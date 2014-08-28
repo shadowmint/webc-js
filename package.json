@@ -21,6 +21,7 @@
     "grunt-shell": "^1.0.1",
     "grunt-ts": "^1.11.2",
     "matchdep": "^0.3.0",
-    "typescript": "^1.0.1"
+    "typescript": "^1.0.1",
+    "iwc-grunt": "git://github.com/shadowmint/iwc-grunt.git#master"
   }
 }
