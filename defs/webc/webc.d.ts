@@ -17,7 +17,7 @@ declare module WEBC {
     }
 
     /** Register a new component type */
-    export function component(config:Component):void;
+    export function component(config:any):void;
 }
 
 declare module "webc" {

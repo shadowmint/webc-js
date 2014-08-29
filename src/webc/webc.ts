@@ -19,7 +19,8 @@ export module webc {
     };
 
     /** Queue a template definition */
-    export function component(value:any) {
+    export function component(value:any):any {
+        var api:any = {};
         var c:Component = {
             name: null,
             stylesheet: null,
@@ -27,13 +28,18 @@ export module webc {
             init: (root:any):any => { return { root: root }; }
         };
         for (var key in value) {
-            c[key] = value[key];
+            if ((key == 'name') || (key == 'stylesheet') || (key == 'template') || (key == 'init')) {
+              c[key] = value[key];
+            }
+            else {
+              api[key] = value[key];
+            }
         }
-        dispatch(c);
+        return dispatch(c, api);
     }
 
     /** Dispatch a component load */
-    function dispatch(c:Component) {
+    function dispatch(c:Component, api:any):void {
         var prototype = Object.create(HTMLElement.prototype);
         prototype.createdCallback = function() {
 
@@ -49,8 +55,15 @@ export module webc {
             root.appendChild(clone);
 
             // Invoke the init call async
-            async.async(() => { c.init(root); });
+            async.async(() => { c.init(this); });
         };
+
+        // Populate the type API before registering
+        for (var key in api) {
+          prototype[key] = api[key];
+        }
+
+        // Register
         document['registerElement'](c.name, { prototype: prototype });
     }
 }

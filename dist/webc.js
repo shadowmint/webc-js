@@ -6,9 +6,6 @@ exports.async = async;
 //# sourceMappingURL=async.js.map
 
 },{}],2:[function(require,module,exports){
-//# sourceMappingURL=platform.js.map
-
-},{}],3:[function(require,module,exports){
 var async = require('./async');
 
 (function (webc) {
@@ -17,6 +14,7 @@ var async = require('./async');
 
     /** Queue a template definition */
     function component(value) {
+        var api = {};
         var c = {
             name: null,
             stylesheet: null,
@@ -28,16 +26,21 @@ var async = require('./async');
             }
         };
         for (var key in value) {
-            c[key] = value[key];
+            if ((key == 'name') || (key == 'stylesheet') || (key == 'template') || (key == 'init')) {
+                c[key] = value[key];
+            } else {
+                api[key] = value[key];
+            }
         }
-        dispatch(c);
+        return dispatch(c, api);
     }
     webc.component = component;
 
     /** Dispatch a component load */
-    function dispatch(c) {
+    function dispatch(c, api) {
         var prototype = Object.create(HTMLElement.prototype);
         prototype.createdCallback = function () {
+            var _this = this;
             // Template for entire component
             var tmpl = document.createElement('template');
             tmpl.innerHTML = '';
@@ -53,9 +56,15 @@ var async = require('./async');
 
             // Invoke the init call async
             async.async(function () {
-                c.init(root);
+                c.init(_this);
             });
         };
+
+        for (var key in api) {
+            prototype[key] = api[key];
+        }
+
+        // Register
         document['registerElement'](c.name, { prototype: prototype });
     }
 })(exports.webc || (exports.webc = {}));
@@ -73,7 +82,7 @@ try  {
 }
 //# sourceMappingURL=webc.js.map
 
-},{"./async":1}],4:[function(require,module,exports){
+},{"./async":1}],3:[function(require,module,exports){
 function test_register(t) {
     t.ok(true);
     t.done();
@@ -81,4 +90,4 @@ function test_register(t) {
 exports.test_register = test_register;
 //# sourceMappingURL=webc_tests.js.map
 
-},{}]},{},[1,2,3,4]);
+},{}]},{},[1,2,3]);

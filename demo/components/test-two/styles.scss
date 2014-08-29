@@ -1,4 +1,7 @@
 .test-two {
+  &.updated {
+    border: 3px solid #f00;
+  }
   input {
     width: 200px;
     height: 50px;
