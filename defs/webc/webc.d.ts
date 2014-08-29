@@ -14,12 +14,12 @@ declare module WEBC {
 
         /** Invoke this on new component instances after they are created */
         init:{(root:any):any};
-    };
+    }
 
     /** Register a new component type */
     export function component(config:Component):void;
 }
 
-declare module "toml" {
+declare module "webc" {
     export = WEBC;
 }

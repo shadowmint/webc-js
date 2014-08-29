@@ -6,30 +6,14 @@ exports.async = async;
 //# sourceMappingURL=async.js.map
 
 },{}],2:[function(require,module,exports){
-var platform = (function () {
-    function platform() {
-    }
-    return platform;
-})();
-exports.platform = platform;
-;
 //# sourceMappingURL=platform.js.map
 
 },{}],3:[function(require,module,exports){
-var platform = require('./platform');
 var async = require('./async');
-(function (a) {
-})(platform);
 
 (function (webc) {
     
     ;
-
-    /** Modules waiting to load */
-    var waiting = [];
-
-    /** Ready yet? */
-    var ready = false;
 
     /** Queue a template definition */
     function component(value) {
@@ -46,11 +30,7 @@ var async = require('./async');
         for (var key in value) {
             c[key] = value[key];
         }
-        if (ready) {
-            dispatch(c);
-        } else {
-            waiting.push(c);
-        }
+        dispatch(c);
     }
     webc.component = component;
 
@@ -78,14 +58,6 @@ var async = require('./async');
         };
         document['registerElement'](c.name, { prototype: prototype });
     }
-
-    // Watch for platform ready
-    window.addEventListener('WebComponentsReady', function () {
-        ready = true;
-        for (var i = 0; i < waiting.length; ++i) {
-            dispatch(waiting[i]);
-        }
-    });
 })(exports.webc || (exports.webc = {}));
 var webc = exports.webc;
 
@@ -101,7 +73,7 @@ try  {
 }
 //# sourceMappingURL=webc.js.map
 
-},{"./async":1,"./platform":2}],4:[function(require,module,exports){
+},{"./async":1}],4:[function(require,module,exports){
 function test_register(t) {
     t.ok(true);
     t.done();

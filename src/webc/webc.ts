@@ -1,6 +1,4 @@
-import platform = require('./platform');
 import async = require('./async');
-((a) => {})(platform);
 
 export module webc {
 
@@ -20,12 +18,6 @@ export module webc {
         init:{(root:any):any};
     };
 
-    /** Modules waiting to load */
-    var waiting = [];
-
-    /** Ready yet? */
-    var ready:boolean = false;
-
     /** Queue a template definition */
     export function component(value:any) {
         var c:Component = {
@@ -37,17 +29,11 @@ export module webc {
         for (var key in value) {
             c[key] = value[key];
         }
-        if (ready) {
-            dispatch(c);
-        }
-        else {
-            waiting.push(c);
-        }
+        dispatch(c);
     }
 
     /** Dispatch a component load */
     function dispatch(c:Component) {
-
         var prototype = Object.create(HTMLElement.prototype);
         prototype.createdCallback = function() {
 
@@ -67,14 +53,6 @@ export module webc {
         };
         document['registerElement'](c.name, { prototype: prototype });
     }
-
-    // Watch for platform ready
-    window.addEventListener('WebComponentsReady', () => {
-        ready = true;
-        for (var i = 0; i < waiting.length; ++i) {
-            dispatch(waiting[i]);
-        }
-    });
 }
 
 // Support AMD and whatever

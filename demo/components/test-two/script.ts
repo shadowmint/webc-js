@@ -5,5 +5,6 @@ declare var data;
 webc.component({
   name: 'test-two',
   stylesheet: data.styles,
-  template: (r:any) => { return data.markup; }
+  template: (r:any) => { return data.markup; },
+  init: (r:any) => {}
 });

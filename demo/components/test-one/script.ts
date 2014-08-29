@@ -9,5 +9,6 @@ webc.component({
   template: (r:any) => {
     console.log(r);
     return data.markup;
-  }
+  },
+  init: (r:any) => {}
 });
