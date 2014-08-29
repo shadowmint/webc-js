@@ -16,7 +16,7 @@
     ".gruntExt.js"
   ],
   "devDependencies": {
-    "platform": "git://github.com/Polymer/platform-dev#master",
+    "platform": "git://github.com/Polymer/platform#0.4.0",
     "requirejs": "~2.1.14"
   }
 }

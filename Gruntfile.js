@@ -36,35 +36,6 @@ module.exports = function (grunt) {
         copy: {
             '<%= path.tmp %>/platform.js': 'bower_components/platform/build/platform.concat.js'
         },
-        shell: {
-            bower: {
-                command: 'bower install',
-                options: {
-                    stderr: true,
-                    stdout: true,
-                }
-            },
-            npm: {
-                command: 'npm install',
-                options: {
-                    stderr: true,
-                    stdout: true,
-                    execOptions: {
-                        cwd: 'bower_components/platform'
-                    }
-                }
-            },
-            platform: {
-                command: 'grunt --force',
-                options: {
-                    stderr: true,
-                    stdout: true,
-                    execOptions: {
-                        cwd: 'bower_components/platform'
-                    }
-                }
-            }
-        },
         browserify: {
             lib: {
                 files: {
@@ -80,7 +51,6 @@ module.exports = function (grunt) {
             }
         }
     });
-    ext.registerTask('_platform', ['shell:bower', 'shell:npm', 'shell:platform']);
     ext.registerTask('_lib', ['ts:lib', 'nodeunit:lib', 'copy', 'browserify:lib', 'uglify:lib']);
 
     // Dev
@@ -111,6 +81,5 @@ module.exports = function (grunt) {
     // Tasks
     ext.initConfig(grunt);
     grunt.registerTask('default', ['clean', '_lib']);
-    grunt.registerTask('setup', ['_platform']);
     grunt.registerTask('dev', ['default', '_dev']);
 }

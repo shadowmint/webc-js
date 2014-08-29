@@ -3,10 +3,9 @@ node_modules
 dist/webc
 demo/js/lib
 *.js.map
-*.d.ts
 .tscache
 .idea
 bower_components
-.DS_STORE
+.DS_Store
 build
 .sass-cache
