@@ -44,10 +44,15 @@ export module webc {
         prototype.createdCallback = function() {
 
             // Template for entire component
+            var rendered = c.template(this);
             var tmpl = document.createElement('template');
             tmpl.innerHTML = '';
-            if (c.stylesheet) { tmpl.innerHTML = tmpl.innerHTML + '<style>' + c.stylesheet + '</style>'; }
-            tmpl.innerHTML = tmpl.innerHTML + c.template(this);
+            if (c.stylesheet) {
+              tmpl.innerHTML = tmpl.innerHTML + '<style>' + c.stylesheet + '</style>';
+            }
+            if (rendered) {
+              tmpl.innerHTML = tmpl.innerHTML + rendered;
+            }
 
             // Create instance
             var root = this.createShadowRoot();
@@ -55,7 +60,10 @@ export module webc {
             root.appendChild(clone);
 
             // Invoke the init call async
-            async.async(() => { c.init(this); });
+            async.async(() => {
+              c.init(this);
+              this.innerHTML = "";
+            });
         };
 
         // Populate the type API before registering
